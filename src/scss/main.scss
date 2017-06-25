@@ -1,0 +1,14 @@
+@import 'variables';
+
+.message{
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    padding: 1rem;
+    width:80%;
+    margin: 0 auto;
+    background-image: url('../../assets/images/jason.jpg');
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+}
