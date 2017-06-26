@@ -7,11 +7,13 @@ function sayHello(){
 }
 
 function cube(x){
-    elem.innerText += `\n cube of ${x} is: ${x*x*x}`;
+    elem.innerText += `
+     cube of ${x} is: ${x*x*x}`;
 }
 
 function square(x){
-    elem.innerText += `\n square of ${x} is: ${x*x}`;
+    elem.innerText += `
+    square of ${x} is: ${x*x}`;
 }
 
 sayHello();

@@ -3,13 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PATHS  = {
-    src: path.join(__dirname,'src','js/main.js'),
+    src: path.join(__dirname,'src'),
     dist: path.join(__dirname, 'dist')
 }
 
 module.exports = {
     entry: {
-        main: PATHS.src
+        main: path.resolve(PATHS.src,'js','main.js')
     },
     output: {
         filename: '[name].bundle.js',
@@ -18,21 +18,57 @@ module.exports = {
     module:{
         rules:[
             {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
+            },
+            {
                 test: /\.(sass|scss)$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'fast-sass-loader']
+                    use: [
+                    {
+                        loader :'css-loader',
+                        options:{
+                            importLoaders: 1 
+                        }
+                    }, 'postcss-loader', 'fast-sass-loader']
                 })
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
-                use: [{
-                    loader: 'url-loader',
-                    options:{
-                        limit: 10000,
-                        name: '[name]-[hash:6].[ext]'
-                    }
-                }]
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options:{
+                            limit: 10000,
+                            name: '[name]-[hash:6].[ext]'
+                        },
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options:{
+                           mozjpeg: {
+                                progressive: true,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            optipng: {
+                                optimizationLevel: 4,
+                            },
+                            pngquant: {
+                                quality: '75-90',
+                                speed: 3,
+                            },
+                        }
+                    },
+                ]
             }
         ]
     },
