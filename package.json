@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env=dev",
-    "build": "npm run clean && webpack --env=prod",
+    "build": "npm run clean && webpack -p --env=prod",
     "clean": "rimraf ./dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-env": "^1.5.2",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "fast-sass-loader": "^1.2.5",

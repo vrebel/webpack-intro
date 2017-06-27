@@ -1,6 +1,10 @@
 module.exports = {
   plugins: {
-    'autoprefixer': {},
-    'cssnano': {}
+    'autoprefixer': {
+        remove: false
+    },
+    'cssnano': {
+        safe: true
+    }
   }
 }

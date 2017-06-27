@@ -1,7 +1,7 @@
 // var common = require('./modules/commonjs.js');
 import * as es6module from './modules/es6.js';
 import '../scss/main.scss';
-import brad from '../../assets/images/brad.jpg';
+//import brad from '../../assets/images/brad.jpg';
 
 es6module.cube(3);
 es6module.square(2);

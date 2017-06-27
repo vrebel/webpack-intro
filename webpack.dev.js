@@ -3,13 +3,13 @@ const webpack =  require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS  = {
-    src: path.join(__dirname,'src','js/main.js'),
+    src: path.join(__dirname,'src'),
     dist: path.join(__dirname, 'dist')
 }
 
 module.exports = {
     entry: {
-        main: PATHS.src
+        main: path.resolve(PATHS.src,'js','main.js')
     },
     output: {
         filename: '[name].bundle.js',
@@ -24,6 +24,16 @@ module.exports = {
     devtool: "inline-source-map",
     module:{
         rules:[
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
+            },
             {
                 test: /\.(sass|scss)$/,
                 use: ['style-loader','css-loader', 'fast-sass-loader']
